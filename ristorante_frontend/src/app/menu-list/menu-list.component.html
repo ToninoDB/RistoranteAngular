@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Gestione Menu Ristorante</h2>
+
+  <!-- Form per aggiungere un nuovo piatto -->
+  <div class="form-container">
+    <input
+      type="text"
+      [(ngModel)]="nuovoPiatto.name"
+      placeholder="Nome del piatto"
+      required
+    />
+    <input
+      type="number"
+      [(ngModel)]="nuovoPiatto.price"
+      placeholder="Prezzo (€)"
+      required
+    />
+    <input
+      type="text"
+      [(ngModel)]="nuovoPiatto.description"
+      placeholder="Descrizione"
+    />
+    <select [(ngModel)]="nuovoPiatto.category">
+      <option value="antipasto">Antipasto</option>
+      <option value="primo">Primo</option>
+      <option value="secondo">Secondo</option>
+      <option value="dolce">Dolce</option>
+    </select>
+    <!-- Metodo corretto -->
+    <button (click)="aggiungiPiatto()">Aggiungi Piatto</button>
+  </div>
+
+  <!-- Lista dinamica dei piatti -->
+  <ul class="menu-list">
+    <li *ngFor="let dish of piatti; let i = index">
+      <strong>{{ dish.name }}</strong> - {{ dish.price | currency : "EUR"
+      }}<br />
+      <small>{{ dish.description }}</small> ({{ dish.category }})
+      <!-- Passaggio dell'ID invece dell'indice -->
+      <button (click)="rimuoviPiatto(dish.id!)">Rimuovi</button>
+    </li>
+  </ul>
+</div>
